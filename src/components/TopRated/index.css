@@ -56,12 +56,33 @@
     text-align: center;
   }
 }
+
 .next-page {
   border-style: none;
   background-color: #8b1c15;
   color: #fff;
   margin-left: 20px;
 }
+
 .loader-container {
   height: 100vh;
+}
+
+.movie-container {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  padding-left: 0;
+  flex-wrap: wrap;
+}
+
+.route-page-body {
+  padding: 50px;
+  background-color: #11cef0;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  min-height: 100vh;
+  background-size: cover;
+  flex-wrap: wrap;
 }

@@ -29,10 +29,11 @@ class Popular extends React.Component {
   })
 
   getPopularMoviesResponse = async (page = 1) => {
-    const API_KEY = 'f32b79895b21468afbdd6d5342cbf3da'
+    const API_KEY = '98d47dd2e3f7e2b627eaf51f7a4e6ca6'
     const apiUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=${page}`
     const response = await fetch(apiUrl)
     const data = await response.json()
+    console.log(data)
     const newData = this.getUpdatedData(data)
     this.setState({isLoading: false, popularMovieResponse: newData})
   }
@@ -48,7 +49,7 @@ class Popular extends React.Component {
     const {results} = popularMovieResponse
 
     return (
-      <ul className="row p-0 ms-0 me-0 mt-3">
+      <ul className="movie-container">
         {results.map(movie => (
           <MovieCard key={movie.id} movieDetails={movie} />
         ))}
@@ -66,11 +67,12 @@ class Popular extends React.Component {
           {isLoading
             ? this.renderLoadingView()
             : this.renderPopularMoviesList()}
+
+          <Pagination
+            totalPages={popularMovieResponse.totalPages}
+            apiCallback={this.getPopularMoviesResponse}
+          />
         </div>
-        <Pagination
-          totalPages={popularMovieResponse.totalPages}
-          apiCallback={this.getPopularMoviesResponse}
-        />
       </>
     )
   }
